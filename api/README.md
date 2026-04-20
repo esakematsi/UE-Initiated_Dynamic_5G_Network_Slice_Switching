@@ -17,7 +17,6 @@ pip install -r ../requirements.txt
 
 ## Run
 
-From the repository root directory:
 
 ```
 uvicorn Slice_API:app --host 0.0.0.0 --port 5000
