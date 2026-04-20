@@ -99,4 +99,12 @@ The system has been validated using:
 - Raspberry Pi 4  
 - Quectel RM520N-GL modem (Firmware: RM520NGLAAR03A03M4G)  
 
+
+
+This implementation relies on `quectel-CM`, a data call tool provided by Quectel. Access to `quectel-CM` can be requested through the Quectel support forums:
+
+https://forums.quectel.com/
+
+
+
 ---
