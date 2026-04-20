@@ -2,7 +2,6 @@
 
 This directory contains the monitoring and decision-making component of the system.
 
----
 
 ## Requirements
 
@@ -25,7 +24,7 @@ python3 goodput_monitoring.py --source-ip <IP_ADDRESS> --port <PORT> --threshold
 
 | Parameter     | Description                          | Required | Default |
 |---------------|--------------------------------------|----------|---------|
-| `--source-ip` | IP address of the monitored TCP flow | Yes      | -       |
-| `--port`      | TCP port of the monitored TCP flow   | Yes      | -       |
+| `--source-ip` | IP address of the monitored flow | Yes      | -       |
+| `--port`      | TCP port of the monitored flow   | Yes      | -       |
 | `--threshold` | Goodput threshold in Mbps            | No       | 2.0     |
 | `--debug`     | Enables verbose debug output         | No       | False   |
