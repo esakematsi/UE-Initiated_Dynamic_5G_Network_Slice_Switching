@@ -30,18 +30,23 @@ This file defines how slice selection is implemented at the UE level.
 
 ### Slice API
 
-The file Slice_API.py implements a RESTful Application Programming Interface (API) that enables interaction with the slice selection and switching mechanism.
+The file `Slice_API.py` implements a RESTful Application Programming Interface (API) that enables interaction with the slice selection and switching mechanism.
 
 The API abstracts low-level modem operations, including AT command handling and QMI-based communication, and exposes a high-level interface for managing network slice selection via HTTP endpoints with JSON payloads.
 
 The API provides the following endpoints:
 
--Retrieval of the current network status, including the active S-NSSAI, DNN, and assigned IP address (AT command-based)
--Querying of available PDU session profiles and their associated slice information (AT command-based)
--Dynamic slice selection through PDU Session Establishment Requests using a specified CID (quectel-CM)
--Disconnection from the network by releasing the active PDU session (quectel-CM)
+- Retrieval of the current network status, including the active S-NSSAI, DNN, and assigned IP address (AT command-based)  
+- Querying of available PDU session profiles and their associated slice information (AT command-based)  
+- Dynamic slice selection through PDU Session Establishment Requests using a specified CID (`quectel-CM`)  
+- Disconnection from the network by releasing the active PDU session (`quectel-CM`)  
 
 The API can be accessed directly by external applications or users, or indirectly by the monitoring component, which evaluates Quality of Service (QoS) metrics such as throughput and latency and triggers slice switching when predefined thresholds are exceeded.
+
+
+<img width="1719" height="791" alt="image" src="https://github.com/user-attachments/assets/83378a9b-9bd8-4c52-9cd5-b4fb46965941" />
+
+
 
 ---
 
