@@ -23,7 +23,7 @@ This mechanism relies on the capability of the modem to initiate PDU Session Est
 1. Install required packages
 ```
 sudo apt update
-sudo apt install libqmi-utils busybox minicom 
+sudo apt install libqmi-utils busybox minicom iproute2 ethtool
 ```
 
 2. Create a new dir and download Quectel-CM 
