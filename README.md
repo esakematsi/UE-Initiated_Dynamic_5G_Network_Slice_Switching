@@ -84,7 +84,7 @@ The system operates as follows:
 5. When performance degradation is detected, a new slice is selected and the modem performs a PDU Session Establishment Request using the new selected S-NSSAI.
 
 
-<img width="1665" height="653" alt="image" src="https://github.com/user-attachments/assets/1f67c306-ce92-4971-9b3a-18595cc57ae5" />
+<img width="1192" height="461" alt="image" src="https://github.com/user-attachments/assets/afb0466b-0c34-458c-966b-d3c50d88d84a" />
 
 
 
