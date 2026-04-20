@@ -41,7 +41,7 @@ The API provides the following endpoints:
 - Dynamic slice selection through PDU Session Establishment Requests using a specified CID (`quectel-CM`)  
 - Disconnection from the network by releasing the active PDU session (`quectel-CM`)  
 
-The API can be accessed directly by external applications or users, or indirectly by the monitoring component, which evaluates Quality of Service (QoS) metrics such as throughput and latency and triggers slice switching when predefined thresholds are exceeded.
+The API can be accessed by external applications or users, or by the monitoring component, which evaluates Quality of Service (QoS) metrics such as throughput and latency and triggers slice switching when predefined thresholds are exceeded.
 
 
 <img width="1719" height="791" alt="image" src="https://github.com/user-attachments/assets/83378a9b-9bd8-4c52-9cd5-b4fb46965941" />
