@@ -14,7 +14,7 @@ The repository consists of the following components:
 
 ### Slice Selection and Modem Configuration
 
-The file `slice_selection.md` contains the complete setup and configuration procedure.
+The file `slice_selection.md` contains the complete setup and configuration procedure, **including all required system dependencies**.
 
 It includes:
 
