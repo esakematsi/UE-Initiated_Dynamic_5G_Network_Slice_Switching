@@ -2,6 +2,14 @@
 
 This directory contains the monitoring and decision-making component of the system.
 
+The ss tool is used to retrieve socket-level statistics directly from the Linux kernel.
+
+In this implementation, it is used to:
+
+- monitor active TCP/UDP connections
+- extract the total number of received bytes (bytes_received)
+- provide real-time socket information 
+
 
 ## Requirements
 
@@ -13,7 +21,7 @@ pip install -r ../requirements.txt
 
 Ensure that:
 - Slice API is running at http://localhost:5000
-- there is an active connection to monitor
+- There is an active connection to monitor
 
 
 
