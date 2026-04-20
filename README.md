@@ -84,10 +84,6 @@ The system operates as follows:
 5. When performance degradation is detected, a new slice is selected and the modem performs a PDU Session Establishment Request using the new selected S-NSSAI.
 
 
-<img width="1192" height="461" alt="image" src="https://github.com/user-attachments/assets/afb0466b-0c34-458c-966b-d3c50d88d84a" />
-
-
-
 
 ---
 
@@ -99,6 +95,7 @@ The system has been validated using:
 - Raspberry Pi 4  
 - Quectel RM520N-GL modem (Firmware: RM520NGLAAR03A03M4G)  
 
+<img width="1192" height="461" alt="image" src="https://github.com/user-attachments/assets/afb0466b-0c34-458c-966b-d3c50d88d84a" />
 
 
 This implementation relies on `quectel-CM`, a data call tool provided by Quectel. Access to `quectel-CM` can be requested through the Quectel support forums:
