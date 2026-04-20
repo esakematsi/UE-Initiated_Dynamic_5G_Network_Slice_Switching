@@ -37,6 +37,16 @@ Inside the folders that were created after unzip:
 make
 ```
 
+### Make `quectel-CM` accessible from any path
+
+To run `quectel-CM` from any directory, add it to your system PATH using a symbolic link.
+
+1. Find the exact path of `quectel-CM`
+
+```
+2. sudo ln -s <FULL_PATH_TO_quectel-CM> /usr/local/bin/quectel-CM
+```
+
 
 3. Check if the modem is recognized by Linux kernel as a USB device
 
@@ -53,7 +63,7 @@ Bus 002 Device 003: ID 2c7c:0801 Quectel Wireless Solutions Co., Ltd. RM520N-GL
 4. Find the primary serial device node under /dev/ttyUSB* (usually /dev/ttyUSB2) and access it with minicom:
 
 ```
-sudo minicom -D /dev/ttyUSB
+sudo minicom -D /dev/ttyUSB2
 ```
 
 5. Activate the ECHO mode: 
@@ -164,7 +174,6 @@ ip a
 
 14. Activate the PDU Profile of your choice:
 ```
-open terminal in Quectel_QConnectManager_Linux_V1.6.8
 
 sudo ./quectel-CM -n <CID number>
 ```
