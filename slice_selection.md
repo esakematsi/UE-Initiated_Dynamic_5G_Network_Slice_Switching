@@ -37,7 +37,7 @@ Inside the folders that were created after unzip:
 make
 ```
 
-### Make `quectel-CM` accessible from any path
+**Make `quectel-CM` accessible from any path**
 
 To run `quectel-CM` from any directory, add it to your system PATH using a symbolic link.
 
