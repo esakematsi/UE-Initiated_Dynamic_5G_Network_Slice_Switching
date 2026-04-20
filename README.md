@@ -56,13 +56,20 @@ The file `goodput_monitoring.py` implements the monitoring and decision-making m
 
 It is responsible for:
 
-- Measuring throughput using system tools (Linux tool ss)  
-- Evaluating connection performance  
-- Triggering slice switching when performance degradation is detected  
+- Measuring the performance of the active connection and triggering slice switching when the QoS is not sufficient. The performance metric used is **goodput**, defined as the rate of successfully received data.
 
-The switching logic follows a performance-driven policy:
+The script uses the Linux `ss` tool to retrieve socket statistics from the kernel. Every second, it reads the total number of received bytes for a specific flow (filtered by IP address and port) and calculates the goodput based on the difference between consecutive measurements. The result is expressed in Mbps.
 
-- If the measured goodput falls below a predefined threshold, a different slice is selected  
+If the measured goodput falls below a predefined threshold for three consecutive measurements, the script triggers a slice switch by sending a request to the Slice API. After switching, it retrieves the updated network status and continues monitoring.
+
+The monitoring process stops automatically when no active connection is detected.
+
+
+Configurable parameters include:
+
+- IP address and port of the monitored socket  
+- Goodput threshold  
+- Debug mode 
 
 ---
 
@@ -75,6 +82,12 @@ The system operates as follows:
 3. A slice is selected by activating the corresponding profile  
 4. The monitoring module continuously evaluates performance  
 5. When performance degradation is detected, a new slice is selected and the modem performs a PDU Session Establishment Request using the new selected S-NSSAI.
+
+
+<img width="1665" height="653" alt="image" src="https://github.com/user-attachments/assets/1f67c306-ce92-4971-9b3a-18595cc57ae5" />
+
+
+
 
 ---
 
