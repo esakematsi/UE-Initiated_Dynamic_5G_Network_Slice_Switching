@@ -65,7 +65,7 @@ It:
 - reads the number of received bytes for a selected flow (source ip and port)
 - calculates goodput from consecutive measurements
 - compares the measured goodput against a configurable threshold
-- triggers a slice switch through the Slice API when the threshold is violated for three consecutive measurements
+- triggers a slice switch through the Slice API when the throughput is below the threshold for three consecutive measurements
 
 The monitoring process stops automatically when no active connection is detected.
 
