@@ -53,5 +53,54 @@ python3 goodput_monitoring.py --source-ip <IP_ADDRESS> --port <PORT> --threshold
 
 
 
+## 2. Live Throughput Monitoring (`iperf3`)
+
+
+This implementation:
+
+- launches an `iperf3` client toward a specified server
+- logs output to a file (`iperf_output.log`)
+- parses throughput values in real time
+- compares measured throughput against a configurable threshold
+
+
+
+### Requirements
+
+Install Python dependencies from the root directory:
+
+```
+pip install -r ../requirements.txt
+```
+
+Ensure that:
+- Slice API is running at http://localhost:5000
+- There is an active iperf3 server to connect to 
+
+
+
+### Run
+
+```
+python3 iperf3_monitoring.py --server <SERVER_IP> --port <PORT> --threshold <THRESHOLD>
+```
+
+
+### Parameters
+
+
+| Parameter   | Description                     | Required | Default |
+|-------------|---------------------------------|----------|---------|
+| `--server`  | IP address of the iperf3 server | Yes      | -       |
+| `--port`    | iperf3 server port              | No       | 5201    |
+| `--threshold` | Throughput threshold in Mbps  | No       | 20.0    |
+| `--debug`   | Enables verbose debug output    | No       | False   |
+
+
+
+
+
+
+
 
 
