@@ -66,6 +66,7 @@ It:
 - calculates goodput from consecutive measurements
 - compares the measured goodput against a configurable threshold
 - triggers a slice switch through the Slice API when the throughput is below the threshold for three consecutive measurements
+- retrieves the updated network status after the switch and continues monitoring
 
 The monitoring process stops automatically when no active connection is detected.
 
@@ -83,7 +84,7 @@ It:
 - parses throughput values from the live log output
 - compares measured throughput against a configurable threshold
 - triggers a slice switch through the Slice API if throughput remains below the threshold for three consecutive measurements
-- retrieves the updated active CID and alternative CID after a successful switch and continues monitoring
+- retrieves the updated network status after the switch and continues monitoring
 
 This approach is useful when the slice switching decision should be based on an active throughput test. 
 
