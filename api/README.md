@@ -15,6 +15,8 @@ pip install -r ../requirements.txt
 ```
 
 
+- PDU Profiles already configured with AT Commands
+
 ## Run
 
 
