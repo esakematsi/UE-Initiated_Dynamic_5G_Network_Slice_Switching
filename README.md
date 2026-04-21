@@ -99,6 +99,7 @@ The system operates as follows:
 3. A slice is selected by activating the corresponding profile  
 4. The monitoring module continuously evaluates performance  
 5. When performance degradation is detected, a new slice is selected and the modem performs a PDU Session Establishment Request using the new selected S-NSSAI.
+6.  Monitoring continues, confirming improved performance after the slice switch.
 
 
 
