@@ -56,7 +56,7 @@ The repository includes monitoring components that evaluate runtime connection p
 
 Two monitoring approaches are supported:
 
-####1. Socket-based goodput monitoring 
+#### 1. Socket-based goodput monitoring 
 
 The file `goodput_monitoring.py` measures goodput from Linux socket statistics using the `ss` utility.
 
@@ -73,7 +73,7 @@ This method is suitable for monitoring an already active application flow.
 
 
 
-####2. Live iperf3-based goodput monitoring 
+#### 2. Live iperf3-based goodput monitoring 
 
 The monitoring script `goodput_monitoring.py` can be used to evaluate uplink/ downlink performance with a live `iperf3` session.
 
