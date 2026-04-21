@@ -19,7 +19,7 @@ pip install -r ../requirements.txt
 
 
 ```
-uvicorn Slice_API:app --host 0.0.0.0 --port 5000
+sudo uvicorn Slice_API:app --host 0.0.0.0 --port 5000
 ```
 
 The API will be available at:
