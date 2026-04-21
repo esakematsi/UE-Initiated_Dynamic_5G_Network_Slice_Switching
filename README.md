@@ -52,24 +52,41 @@ The API can be accessed by external applications or users, or by the monitoring 
 
 ### Goodput Monitoring and Switching Logic
 
-The file `goodput_monitoring.py` implements the monitoring and decision-making mechanism.
+The repository includes monitoring components that evaluate runtime connection performance and trigger a slice switch when the currently active slice no longer satisfies the required QoS.
 
-It is responsible for:
+Two monitoring approaches are supported:
 
-- Measuring the performance of the active connection and triggering slice switching when the QoS is not sufficient. The performance metric used is **goodput**, defined as the rate of successfully received data.
+####1. Socket-based goodput monitoring 
 
-The script uses the Linux `ss` tool to retrieve socket statistics from the kernel. Every second, it reads the total number of received bytes for a specific flow (filtered by IP address and port) and calculates the goodput based on the difference between consecutive measurements. The result is expressed in Mbps.
+The file `goodput_monitoring.py` measures goodput from Linux socket statistics using the `ss` utility.
 
-If the measured goodput falls below a predefined threshold for three consecutive measurements, the script triggers a slice switch by sending a request to the Slice API. After switching, it retrieves the updated network status and continues monitoring.
+It: 
+
+- reads the number of received bytes for a selected flow (source ip and port)
+- calculates goodput from consecutive measurements
+- compares the measured goodput against a configurable threshold
+- triggers a slice switch through the Slice API when the threshold is violated for three consecutive measurements
 
 The monitoring process stops automatically when no active connection is detected.
 
+This method is suitable for monitoring an already active application flow.
 
-Configurable parameters include:
 
-- IP address and port of the monitored socket  
-- Goodput threshold  
-- Debug mode 
+
+####2. Live iperf3-based goodput monitoring 
+
+The monitoring script `goodput_monitoring.py` can be used to evaluate uplink/ downlink performance with a live `iperf3` session.
+
+It:
+- launches an `iperf3` client toward a specified server and port
+- stores the `iperf3` output in a log file
+- parses throughput values from the live log output
+- compares measured throughput against a configurable threshold
+- triggers a slice switch through the Slice API if throughput remains below the threshold for three consecutive measurements
+- retrieves the updated active CID and alternative CID after a successful switch and continues monitoring
+
+This approach is useful when the slice switching decision should be based on an active throughput test. 
+
 
 ---
 
