@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import asyncio
 
 
 SERIAL_PORT = "/dev/ttyUSB2"
@@ -19,6 +20,7 @@ BAUD_RATE = 115200
 TIMEOUT = 1
 
 p_num= None
+switch_lock = asyncio.Lock()
 
 
 def send_AT_command(command, ser,TIMEOUT=1):
@@ -178,7 +180,7 @@ def activate_slice(requested_slice):
         cmd = ["sudo", "quectel-CM", "-n", cid_target]
 
 
-        disconnect_sessions()        
+        # disconnect_sessions()        
         
         
         process= subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text= True, bufsize=1)
@@ -345,38 +347,42 @@ def get_alternative_cid_profile():
 
 @app.post('/activate_pdu')
 async def activate_pdu_session(request: SliceRequest):
-    requested_cid= request.CID
+    if switch_lock.locked():      
+        return JSONResponse(status_code=429, content={"Error": "A slice switch is already in progress. Try again later."})
 
-    global p_num
-    if not p_num:
-        ser = init_serial()
-        if not ser:
-            return JSONResponse(status_code=500, content={"Error": "Failed to open serial port"})
+    async with switch_lock:
+        requested_cid= request.CID
 
-        info, p_num = get_current_network_status(ser)
-        ser.close()
-        if not info:
-            return JSONResponse(status_code=500, content={"Error": "Failed to retrieve PDU profile info."})
+        global p_num
+        if not p_num:
+            ser = init_serial()
+            if not ser:
+                return JSONResponse(status_code=500, content={"Error": "Failed to open serial port"})
+
+            info, p_num = get_current_network_status(ser)
+            ser.close()
+            if not info:
+                return JSONResponse(status_code=500, content={"Error": "Failed to retrieve PDU profile info."})
 
 
 
 
-    if not requested_cid:
-        return JSONResponse(status_code=400, content={"Error": "CID not provided."})
+        if not requested_cid:
+            return JSONResponse(status_code=400, content={"Error": "CID not provided."})
 
+            
+
+        if not validate_cid_input(requested_cid,p_num):
+            return JSONResponse(status_code=400, content={"Error": "Cannot access this Slice. Choose a different CID."})
+
+
+            
         
-
-    if not validate_cid_input(requested_cid,p_num):
-        return JSONResponse(status_code=400, content={"Error": "Cannot access this Slice. Choose a different CID."})
-
-
-        
-    
-    suc= activate_slice(requested_cid)
-    if suc:
-        return JSONResponse(status_code=200, content={"Message": f"PDU Session successfully established for CID {requested_cid}."})
-    else:
-        return JSONResponse(status_code=500, content={"Error": "Failed to establish PDU Session for the requested CID."})
+        suc= activate_slice(requested_cid)
+        if suc:
+            return JSONResponse(status_code=200, content={"Message": f"PDU Session successfully established for CID {requested_cid}."})
+        else:
+            return JSONResponse(status_code=500, content={"Error": "Failed to establish PDU Session for the requested CID."})
 
 
         
