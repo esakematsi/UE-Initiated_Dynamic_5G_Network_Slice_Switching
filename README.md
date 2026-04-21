@@ -50,7 +50,7 @@ The API can be accessed by external applications or users, or by the monitoring 
 
 ---
 
-### Goodput Monitoring and Switching Logic
+### Performance Monitoring and Switching Logic
 
 The repository includes monitoring components that evaluate runtime connection performance and trigger a slice switch when the currently active slice no longer satisfies the required QoS.
 
@@ -73,7 +73,7 @@ This method is suitable for monitoring an already active application flow.
 
 
 
-#### 2. Live iperf3-based goodput monitoring 
+#### 2. Live iperf3-based throughput monitoring 
 
 The monitoring script `goodput_monitoring.py` can be used to evaluate uplink/ downlink performance with a live `iperf3` session.
 
