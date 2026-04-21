@@ -1,6 +1,14 @@
-# Goodput Monitoring and Slice Switching
+# Performance Monitoring and Slice Switching
 
 This directory contains the monitoring and decision-making component of the system.
+
+Two monitoring approaches are supported:
+- socket-based monitoring using `ss`
+- active throughput monitoring using `iperf3`
+
+
+## 1. Socket-based Monitoring (`ss`)
+
 
 The ss tool is used to retrieve socket-level statistics directly from the Linux kernel.
 
@@ -11,7 +19,7 @@ In this implementation, it is used to:
 - provide real-time socket information 
 
 
-## Requirements
+### Requirements
 
 Install Python dependencies from the root directory:
 
@@ -25,14 +33,14 @@ Ensure that:
 
 
 
-## Run
+### Run
 
 ```
 python3 goodput_monitoring.py --source-ip <IP_ADDRESS> --port <PORT> --threshold <THRESHOLD>
 ```
 
 
-## Parameters
+### Parameters
 
 | Parameter     | Description                          | Required | Default |
 |---------------|--------------------------------------|----------|---------|
@@ -40,3 +48,10 @@ python3 goodput_monitoring.py --source-ip <IP_ADDRESS> --port <PORT> --threshold
 | `--port`      | Port of the monitored flow   | Yes      | -       |
 | `--threshold` | Goodput threshold in Mbps            | No       | 2.0     |
 | `--debug`     | Enables verbose debug output         | No       | False   |
+
+
+
+
+
+
+
